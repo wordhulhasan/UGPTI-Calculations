@@ -289,9 +289,6 @@ def step2():
     df_service = pd.read_csv('2019service.csv')
     df_service = clean_names(df_service)
 
-    print(df.head(5))
-    print(df_service.head(5)['mode'])
-
     ar = "AR"
     cb = "CB"
     cc = "CC"
@@ -317,7 +314,7 @@ def step2():
     pt = "PT"
     do = "DO"
 
-    vrm_total = 0;
+    vrm_total = 0
     for index, row in df.iterrows():
         # print(index)
 
@@ -331,11 +328,9 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_ar'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
+
             else:
                 df.loc[index, 'vrm_ar'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @cb and time_period == @annualTotal")
         if tdf.empty:
@@ -347,11 +342,8 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_cb'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_cb'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @cc and time_period == @annualTotal")
         if tdf.empty:
@@ -363,11 +355,9 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_cc'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
+
             else:
                 df.loc[index, 'vrm_cc'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @cr and time_period == @annualTotal")
         if tdf.empty:
@@ -379,11 +369,9 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_cr'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
+
             else:
                 df.loc[index, 'vrm_cr'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @dr and time_period == @annualTotal")
         if tdf.empty:
@@ -395,11 +383,9 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_dr'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
+
             else:
                 df.loc[index, 'vrm_dr'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @dt and time_period == @annualTotal")
         if tdf.empty:
@@ -411,11 +397,9 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_dt'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
+
             else:
                 df.loc[index, 'vrm_dt'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @fb and time_period == @annualTotal")
         if tdf.empty:
@@ -427,11 +411,8 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_fb'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_fb'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @hr and time_period == @annualTotal")
         if tdf.empty:
@@ -443,11 +424,8 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_hr'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_hr'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @ip and time_period == @annualTotal")
         if tdf.empty:
@@ -458,11 +436,8 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_ip'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_ip'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @jt and time_period == @annualTotal")
         if tdf.empty:
@@ -474,11 +449,8 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_jt'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_jt'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @lr and time_period == @annualTotal")
         if tdf.empty:
@@ -490,11 +462,8 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_lr'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_lr'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @mb and time_period == @annualTotal")
         if tdf.empty:
@@ -506,11 +475,8 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_mb'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_mb'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @mg and time_period == @annualTotal")
         if tdf.empty:
@@ -522,11 +488,8 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_mg'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_mg'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @or_ and time_period == @annualTotal")
         if tdf.empty:
@@ -538,11 +501,8 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_or'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_or'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @pb and time_period == @annualTotal")
         if tdf.empty:
@@ -554,11 +514,8 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_pb'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_pb'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @rb and time_period == @annualTotal")
         if tdf.empty:
@@ -570,11 +527,8 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_rb'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_rb'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @sr and time_period == @annualTotal")
         if tdf.empty:
@@ -586,11 +540,8 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_sr'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_sr'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @tb and time_period == @annualTotal")
         if tdf.empty:
@@ -602,11 +553,8 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_tb'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_tb'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @tr and time_period == @annualTotal")
         if tdf.empty:
@@ -618,11 +566,8 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_tr'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_tr'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @vp and time_period == @annualTotal")
         if tdf.empty:
@@ -634,11 +579,8 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_vp'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_vp'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
 
         tdf = df_service.query("ntd_id== @index and mode== @yr and time_period == @annualTotal")
         if tdf.empty:
@@ -650,26 +592,19 @@ def step2():
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
                 df.loc[index, 'vrm_yr'] = val1 + val2
-                vrm_total = vrm_total + val1 + val2
             else:
                 df.loc[index, 'vrm_yr'] = tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False)
-                vrm_total = vrm_total + int(
-                    tdf['actual_vehicle_passenger_car_revenue_miles'].to_string(index=False).replace(',', ''))
-        df.loc[index, 'vrm_total'] = vrm_total
-
+    print(df.head(3))
     df.to_csv('version2.csv')
 
 
 def step3():
-    df = pd.read_csv('version2.csv')
+    df = pd.read_csv('version2.csv', dtype ='str')
     df = clean_names(df)
     df = df.head(5)
     df = df.set_index('ntd_id')
     df_service = pd.read_csv('2019service.csv')
     df_service = clean_names(df_service)
-
-    print(df.head(5))
-    print(df_service.head(5)['mode'])
 
     ar = "AR"
     cb = "CB"
@@ -697,7 +632,7 @@ def step3():
     do = "DO"
 
     for index, row in df.iterrows():
-        # print(index)
+
         tdf = df_service.query("ntd_id== @index and mode== @ar and time_period == @annualTotal")
         if tdf.empty:
             df.loc[index, 'vrh_ar'] = 0
@@ -974,15 +909,12 @@ def step3():
 
 
 def step4():
-    df = pd.read_csv('version2.csv')
+    df = pd.read_csv('version2.csv', dtype ='str')
     df = clean_names(df)
     df = df.head(5)
     df = df.set_index('ntd_id')
     df_service = pd.read_csv('2019service.csv')
     df_service = clean_names(df_service)
-
-    print(df.head(5))
-    print(df_service.head(5)['mode'])
 
     ar = "AR"
     cb = "CB"
@@ -1010,7 +942,6 @@ def step4():
     do = "DO"
 
     for index, row in df.iterrows():
-        # print(index)
         tdf = df_service.query("ntd_id== @index and mode== @ar and time_period == @annualTotal")
         if tdf.empty:
             df.loc[index, 'upt_ar'] = 0
@@ -1285,15 +1216,93 @@ def step4():
 
     df.to_csv('version2.csv')
 
+def step5():
+    df = pd.read_csv('version2.csv', dtype ='str')
+    df = clean_names(df)
+    df = df.head(5)
+    df = df.set_index('ntd_id')
+    df_service = pd.read_csv('2019 Operating Expenses.csv')
+    df_service = clean_names(df_service)
+    ar = "AR"
+    cb = "CB"
+    cc = "CC"
+    cr = "CR"
+    dr = "DR"
+    dt = "DT"
+    fb = "FB"
+    hr = "HR"
+    ip = "IP"
+    jt = "JT"
+    lr = "LR"
+    mb = "MB"
+    mg = "MG"
+    or_ = "OR"
+    pb = "PB"
+    rb = "RB"
+    sr = "SR"
+    tb = "TB"
+    tr = "TR"
+    vp = "VP"
+    yr = "YR"
+    for index, row in df.iterrows():
+        df = totalOpexCalculation(df, df_service, index, ar,0)
+        df = totalOpexCalculation(df, df_service, index, cb,0)
+        df = totalOpexCalculation(df, df_service, index, cc,0)
+        df = totalOpexCalculation(df, df_service, index, cr,0)
+        df = totalOpexCalculation(df, df_service, index, dr,0)
+        df = totalOpexCalculation(df, df_service, index, dt,0)
+        df = totalOpexCalculation(df, df_service, index, fb,0)
+        df = totalOpexCalculation(df, df_service, index, hr,0)
+        df = totalOpexCalculation(df, df_service, index, ip,0)
+        df = totalOpexCalculation(df, df_service, index, jt,0)
+        df = totalOpexCalculation(df, df_service, index, lr,0)
+        df = totalOpexCalculation(df, df_service, index, mb,0)
+        df = totalOpexCalculation(df, df_service, index, mg,0)
+        df = totalOpexCalculation(df, df_service, index, or_,0)
+        df = totalOpexCalculation(df, df_service, index, pb,0)
+        df = totalOpexCalculation(df, df_service, index, rb,0)
+        df = totalOpexCalculation(df, df_service, index, sr,0)
+        df = totalOpexCalculation(df, df_service, index, tb,0)
+        df = totalOpexCalculation(df, df_service, index, tr,0)
+        df = totalOpexCalculation(df, df_service, index, vp,0)
+        df = totalOpexCalculation(df, df_service, index, yr,1)
+
+    df.to_csv('version2.csv')
+
+
+def totalOpexCalculation(df, df_service, index, mode,flag):
+    pt = "PT"
+    do = "DO"
+    total = "Total"
+    sum = 0
+    tdf = df_service.query("ntd_id== @index and mode== @mode and operating_expense_type== @total")
+    if tdf.empty:
+        df.loc[index, 'opex_'+mode.lower()] = 0
+    else:
+        if tdf.shape[0] > 1:
+            tdf1 = tdf.query("tos == @pt")
+            tdf2 = tdf.query("tos == @do")
+            val1 = int(tdf1['total_operating_expenses'].to_string(index=False).replace(',', '').replace('$', ''))
+            val2 = int(tdf2['total_operating_expenses'].to_string(index=False).replace(',', '').replace('$', ''))
+            df.loc[index, 'opex_'+mode.lower()] = val1 + val2
+        else:
+            df.loc[index, 'opex_'+mode.lower()] = tdf['total_operating_expenses'].to_string(index=False).replace('$', '')
+    if flag ==1:
+        tdf_total = df_service.query("ntd_id== @index and operating_expense_type== @total")
+        for openIndex, row in tdf_total.iterrows():
+            sum = sum + int(row['total_operating_expenses'].replace(',', '').replace('$', ''))
+        df.loc[index,'opex_total'] = sum
+    return df
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    step1()
-    print("Step 1 complete")
+    # step1()
+    # print("Step 1 complete")
     step2()
     print("Step 2 complete")
     step3()
     print("Step 3 complete")
     step4()
     print("Step 4 complete")
-
+    step5()
+    print("Step 5 complete")
