@@ -1,11 +1,11 @@
 import pandas as pd
 from janitor import clean_names
 def step3():
-    df = pd.read_csv('../UGPTI-Calculations/Output/step2_vrm.csv', dtype ='str')
+    df = pd.read_csv('version2.csv', dtype ='str')
     df = clean_names(df)
     df = df.head(5)
     df = df.set_index('ntd_id')
-    df_service = pd.read_csv('../UGPTI-Calculations/NTD_Files/2019service.csv')
+    df_service = pd.read_csv('2019service.csv')
     df_service = clean_names(df_service)
 
     ar = "AR"
@@ -307,32 +307,7 @@ def step3():
             else:
                 df.loc[index, 'vrh_yr'] = tdf['actual_vehicle_passenger_car_revenue_hours'].to_string(index=False)
 
-    df.to_csv('../UGPTI-Calculations/Output/step3_vrh.csv')
-
-def totalVRHCalculation(df, df_service, index, mode,flag):
-    pt = "PT"
-    do = "DO"
-    total = "Annual Total"
-    sum = 0
-    tdf = df_service.query("ntd_id== @index and mode== @mode and time_period== @total")
-    if tdf.empty:
-        df.loc[index, 'vrh_'+mode.lower()] = 0
-    else:
-        if tdf.shape[0] > 1:
-            tdf1 = tdf.query("tos == @pt")
-            tdf2 = tdf.query("tos == @do")
-            val1 = int(tdf1['actual_vehicle_passenger_car_revenue_hours'].to_string(index=False).replace(',', '').replace('$', ''))
-            val2 = int(tdf2['actual_vehicle_passenger_car_revenue_hours'].to_string(index=False).replace(',', '').replace('$', ''))
-            df.loc[index, 'vrh_'+mode.lower()] = val1 + val2
-        else:
-            df.loc[index, 'vrh_'+mode.lower()] = tdf['actual_vehicle_passenger_car_revenue_hours'].to_string(index=False).replace('$', '')
-    if flag ==1:
-        tdf_total = df_service.query("ntd_id== @index and time_period== @total")
-        for openIndex, row in tdf_total.iterrows():
-            sum = sum + int(row['actual_vehicle_passenger_car_revenue_hours'].replace(',', '').replace('$', ''))
-        df.loc[index,'vrh_total'] = sum
-    return df
-
+    df.to_csv('version2.csv')
 
 if __name__ == '__main__':
 

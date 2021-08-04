@@ -4,8 +4,8 @@ from janitor import clean_names
 
 def step1():
     # Use a breakpoint in the code line below to debug your script.
-    df = pd.read_csv('2019_a_info.csv')
-    df_service = pd.read_csv('2019service.csv')
+    df = pd.read_csv('../UGPTI-Calculations/NTD_Files/2019_a_info.csv')
+    df_service = pd.read_csv('../UGPTI-Calculations/NTD_Files/2019service.csv')
     df = df.set_index('NTD_ID')
     print(df.head(5))
     print(df_service.head(5))
@@ -188,7 +188,7 @@ def step1():
 
         # print(tdf)
     print(df.head(10))  # Press Ctrl+F8 to toggle the breakpoint.
-    df.to_csv('file_name_modes.csv')
+    df.to_csv('../UGPTI-Calculations/Output/file_name_modes.csv')
     valid = 1
     nonValid = 0
     # MB DR VP
@@ -278,8 +278,8 @@ def step1():
         else:
             df.loc[index, 'mb_dr'] = 1
 
-    df.to_csv('version1.csv')
+    df.to_csv('../UGPTI-Calculations/Output/step1_mode.csv')
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    # step1()
-    # print("Step 1 complete")
+     step1()
+     print("Step 1 complete")

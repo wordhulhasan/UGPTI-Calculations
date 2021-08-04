@@ -3,8 +3,8 @@ from janitor import clean_names
 
 
 def step6():
-    df = pd.read_csv('version2.csv', dtype='str')
-    df_2 = pd.read_csv('version2.csv', dtype='str')
+    df = pd.read_csv('../UGPTI-Calculations/Output/step5_opex.csv', dtype='str')
+    df_2 = pd.read_csv('../UGPTI-Calculations/Output/step5_opex.csv', dtype='str')
     df = clean_names(df)
     df = df.head(5)
     df = df.set_index('ntd_id')
@@ -52,7 +52,7 @@ def step6():
         df = totalOpexCalculationbyTrip(df, df_2,index, vp, 0)
         df = totalOpexCalculationbyTrip(df, df_2,index, yr, 1)
 
-    df.to_csv('version2.csv')
+    df.to_csv('../UGPTI-Calculations/Output/step6_opex_by_upt.csv')
 
 
 def totalOpexCalculationbyTrip(df, df_2, index, mode, flag):
