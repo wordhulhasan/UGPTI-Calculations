@@ -2,7 +2,7 @@ import pandas as pd
 from janitor import clean_names
 
 
-def step6():
+def step8():
     df = pd.read_csv('../UGPTI-Calculations/Output/step7_opex_by_vrm.csv', dtype='str')
     df_2 = pd.read_csv('../UGPTI-Calculations/Output/step7_opex_by_vrm.csv', dtype='str')
     df = clean_names(df)
@@ -69,5 +69,5 @@ def totalOpexCalculationByVRH(df, df_2, index, mode, flag):
 
 
 if __name__ == '__main__':
-    step6()
+    step8()
     print("Step 8 complete")
