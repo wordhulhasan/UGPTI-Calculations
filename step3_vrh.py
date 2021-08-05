@@ -3,9 +3,9 @@ from janitor import clean_names
 def step3():
     df = pd.read_csv('../UGPTI-Calculations/Output/step2_vrm.csv', dtype ='str')
     df = clean_names(df)
-    # df = df.head(5)
+    #df = df.head(80)
     df = df.set_index('ntd_id')
-    df_service = pd.read_csv('../UGPTI-Calculations/NTD_Files/2019service.csv')
+    df_service = pd.read_csv('NTD_Files/2019service.csv', dtype='str')
     df_service = clean_names(df_service)
 
     ar = "AR"
@@ -309,7 +309,9 @@ def step3():
         sum=0
         tdf_total = df_service.query("ntd_id== @index and time_period == @annualTotal")
         for openIndex, row in tdf_total.iterrows():
-            sum = sum + int(row['actual_vehicle_passenger_car_revenue_hours'].replace(',', '').replace('$', ''))
+            if(str(row['actual_vehicle_passenger_car_revenue_hours'])=='nan'):
+                row['actual_vehicle_passenger_car_revenue_hours']='0'
+            sum = sum + int(str(row['actual_vehicle_passenger_car_revenue_hours']).replace(',', '').replace('$', ''))
         df.loc[index, 'vrh_total'] = sum
     df.to_csv('Output/step3_vrh.csv')
 
