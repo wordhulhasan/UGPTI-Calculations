@@ -51,8 +51,10 @@ def step5():
         df = totalOpexCalculation(df, df_opex, index, vp,0)
         df = totalOpexCalculation(df, df_opex, index, yr,1)
 
-    df.to_csv('../UGPTI-Calculations/Output/step5_opex.csv')
+    df.to_csv('Output/step5_opex.csv')
 def totalOpexCalculation(df, df_opex, index, mode,flag):
+    if mode == "IP":
+        return df
     pt = "PT"
     do = "DO"
     total = "Total"

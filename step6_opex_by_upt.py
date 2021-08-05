@@ -52,7 +52,20 @@ def step6():
         df = totalOpexCalculationbyTrip(df, df_2,index, vp, 0)
         df = totalOpexCalculationbyTrip(df, df_2,index, yr, 1)
 
-    df.to_csv('../UGPTI-Calculations/Output/step6_opex_by_upt.csv')
+        opexPerTripTotalCalculation(df, df_2, index)
+    df.to_csv('Output/step6_opex_by_upt.csv')
+
+
+def opexPerTripTotalCalculation(df, df_2, index):
+    tdf = df_2.query("ntd_id== @index")
+    valOpexTotal = float(
+        tdf['opex_total'].to_string(index=False).replace(',', '').replace('$', '').replace(' ', ''))
+    valUptTotal = float(
+        tdf['upt_total'].to_string(index=False).replace(',', '').replace('$', '').replace(' ', ''))
+    if valUptTotal == 0:
+        df.loc[index, 'opex_per_trip_total'] = 0
+    else:
+        df.loc[index, 'opex_per_trip_total'] = "{:.2f}".format(valOpexTotal / valUptTotal)
 
 
 def totalOpexCalculationbyTrip(df, df_2, index, mode, flag):

@@ -147,9 +147,9 @@ def step3():
                 tdf2 = tdf.query("ntd_id== @index and mode== @ip and time_period == @annualTotal and tos == @do")
                 val1 = int(tdf1['actual_vehicle_passenger_car_revenue_hours'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['actual_vehicle_passenger_car_revenue_hours'].to_string(index=False).replace(',', ''))
-                df.loc[index, 'vrh_ip'] = val1 + val2
+                df.loc[index, 'vrh_ip'] = 0
             else:
-                df.loc[index, 'vrh_ip'] = tdf['actual_vehicle_passenger_car_revenue_hours'].to_string(index=False)
+                df.loc[index, 'vrh_ip'] = 0
 
         tdf = df_service.query("ntd_id== @index and mode== @jt and time_period == @annualTotal")
         if tdf.empty:
@@ -306,32 +306,13 @@ def step3():
                 df.loc[index, 'vrh_yr'] = val1 + val2
             else:
                 df.loc[index, 'vrh_yr'] = tdf['actual_vehicle_passenger_car_revenue_hours'].to_string(index=False)
-
-    df.to_csv('../UGPTI-Calculations/Output/step3_vrh.csv')
-
-def totalVRHCalculation(df, df_service, index, mode,flag):
-    pt = "PT"
-    do = "DO"
-    total = "Annual Total"
-    sum = 0
-    tdf = df_service.query("ntd_id== @index and mode== @mode and time_period== @total")
-    if tdf.empty:
-        df.loc[index, 'vrh_'+mode.lower()] = 0
-    else:
-        if tdf.shape[0] > 1:
-            tdf1 = tdf.query("tos == @pt")
-            tdf2 = tdf.query("tos == @do")
-            val1 = int(tdf1['actual_vehicle_passenger_car_revenue_hours'].to_string(index=False).replace(',', '').replace('$', ''))
-            val2 = int(tdf2['actual_vehicle_passenger_car_revenue_hours'].to_string(index=False).replace(',', '').replace('$', ''))
-            df.loc[index, 'vrh_'+mode.lower()] = val1 + val2
-        else:
-            df.loc[index, 'vrh_'+mode.lower()] = tdf['actual_vehicle_passenger_car_revenue_hours'].to_string(index=False).replace('$', '')
-    if flag ==1:
-        tdf_total = df_service.query("ntd_id== @index and time_period== @total")
+        sum=0
+        tdf_total = df_service.query("ntd_id== @index and time_period == @annualTotal")
         for openIndex, row in tdf_total.iterrows():
             sum = sum + int(row['actual_vehicle_passenger_car_revenue_hours'].replace(',', '').replace('$', ''))
-        df.loc[index,'vrh_total'] = sum
-    return df
+        df.loc[index, 'vrh_total'] = sum
+    df.to_csv('Output/step3_vrh.csv')
+
 
 
 if __name__ == '__main__':

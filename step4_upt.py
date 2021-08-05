@@ -43,9 +43,9 @@ def step4():
                 tdf2 = tdf.query("ntd_id== @index and mode== @ar and time_period == @annualTotal and tos == @do")
                 val1 = int(tdf1['unlinked_passenger_trips_upt_'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['unlinked_passenger_trips_upt_'].to_string(index=False).replace(',', ''))
-                df.loc[index, 'upt_ar'] = val1 + val2
+                df.loc[index, 'upt_ar'] = 0
             else:
-                df.loc[index, 'upt_ar'] = tdf['unlinked_passenger_trips_upt_'].to_string(index=False)
+                df.loc[index, 'upt_ar'] = 0
 
         tdf = df_service.query("ntd_id== @index and mode== @cb and time_period == @annualTotal")
         if tdf.empty:
@@ -305,32 +305,14 @@ def step4():
                 df.loc[index, 'upt_yr'] = val1 + val2
             else:
                 df.loc[index, 'upt_yr'] = tdf['unlinked_passenger_trips_upt_'].to_string(index=False)
-
-    df.to_csv('../UGPTI-Calculations/Output/step4_upt.csv')
-
-def totalUPTCalculation(df, df_service, index, mode,flag):
-    pt = "PT"
-    do = "DO"
-    total = "Annual Total"
-    sum = 0
-    tdf = df_service.query("ntd_id== @index and mode== @mode and time_period== @total")
-    if tdf.empty:
-        df.loc[index, 'upt_'+mode.lower()] = 0
-    else:
-        if tdf.shape[0] > 1:
-            tdf1 = tdf.query("tos == @pt")
-            tdf2 = tdf.query("tos == @do")
-            val1 = int(tdf1['unlinked_passenger_trips_upt_'].to_string(index=False).replace(',', '').replace('$', ''))
-            val2 = int(tdf2['unlinked_passenger_trips_upt_'].to_string(index=False).replace(',', '').replace('$', ''))
-            df.loc[index, 'upt_'+mode.lower()] = val1 + val2
-        else:
-            df.loc[index, 'upt_'+mode.lower()] = tdf['unlinked_passenger_trips_upt_'].to_string(index=False).replace('$', '')
-    if flag ==1:
-        tdf_total = df_service.query("ntd_id== @index and time_period== @total")
+        sum=0
+        tdf_total = df_service.query("ntd_id== @index and time_period == @annualTotal")
         for openIndex, row in tdf_total.iterrows():
             sum = sum + int(row['unlinked_passenger_trips_upt_'].replace(',', '').replace('$', ''))
-        df.loc[index,'upt_total'] = sum
-    return df
+        df.loc[index, 'upt_total'] = sum
+
+    df.to_csv('Output/step4_upt.csv')
+
 
 if __name__ == '__main__':
     step4()
