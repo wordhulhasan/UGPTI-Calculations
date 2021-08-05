@@ -147,9 +147,9 @@ def step4():
                 tdf2 = tdf.query("ntd_id== @index and mode== @ip and time_period == @annualTotal and tos == @do")
                 val1 = int(tdf1['unlinked_passenger_trips_upt_'].to_string(index=False).replace(',', ''))
                 val2 = int(tdf2['unlinked_passenger_trips_upt_'].to_string(index=False).replace(',', ''))
-                df.loc[index, 'upt_ip'] = val1 + val2
+                df.loc[index, 'upt_ip'] = 0
             else:
-                df.loc[index, 'upt_ip'] = tdf['unlinked_passenger_trips_upt_'].to_string(index=False)
+                df.loc[index, 'upt_ip'] = 0
 
         tdf = df_service.query("ntd_id== @index and mode== @jt and time_period == @annualTotal")
         if tdf.empty:
