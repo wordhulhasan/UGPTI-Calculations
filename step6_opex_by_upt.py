@@ -3,10 +3,10 @@ from janitor import clean_names
 
 
 def step6():
-    df = pd.read_csv('../UGPTI-Calculations/Output/step5_opex.csv', dtype='str')
-    df_2 = pd.read_csv('../UGPTI-Calculations/Output/step5_opex.csv', dtype='str')
+    df = pd.read_csv('Output/step5_opex.csv', dtype='str')
+    df_2 = pd.read_csv('Output/step5_opex.csv', dtype='str')
     df = clean_names(df)
-    df = df.head(5)
+    # df = df.head(5)
     df = df.set_index('ntd_id')
     ar = "AR"
     cb = "CB"

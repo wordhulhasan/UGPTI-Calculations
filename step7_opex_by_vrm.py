@@ -3,10 +3,10 @@ from janitor import clean_names
 
 
 def step7():
-    df = pd.read_csv('../UGPTI-Calculations/Output/step6_opex_by_upt.csv', dtype='str')
-    df_2 = pd.read_csv('../UGPTI-Calculations/Output/step6_opex_by_upt.csv', dtype='str')
+    df = pd.read_csv('Output/step6_opex_by_upt.csv', dtype='str')
+    df_2 = pd.read_csv('Output/step6_opex_by_upt.csv', dtype='str')
     df = clean_names(df)
-    df = df.head(5)
+    # df = df.head(5)
     df = df.set_index('ntd_id')
     ar = "AR"
     cb = "CB"
@@ -51,8 +51,19 @@ def step7():
         df = totalOpexCalculationByVRM(df, df_2,index, tr, 0)
         df = totalOpexCalculationByVRM(df, df_2,index, vp, 0)
         df = totalOpexCalculationByVRM(df, df_2,index, yr, 1)
+        opexByVrmTotalCalculation(df, df_2, index)
+    df.to_csv('Output/step7_opex_by_vrm.csv')
 
-    df.to_csv('../UGPTI-Calculations/Output/step7_opex_by_vrm.csv')
+def opexByVrmTotalCalculation(df, df_2, index):
+    tdf = df_2.query("ntd_id== @index")
+    valOpexTotal = float(
+        tdf['opex_total'].to_string(index=False).replace(',', '').replace('$', '').replace(' ', ''))
+    valVrmTotal = float(
+        tdf['vrm_total'].to_string(index=False).replace(',', '').replace('$', '').replace(' ', ''))
+    if valVrmTotal == 0:
+        df.loc[index, 'opex_vrm_total'] = 0
+    else:
+        df.loc[index, 'opex_vrm_total'] = "{:.2f}".format(valOpexTotal / valVrmTotal)
 
 
 def totalOpexCalculationByVRM(df, df_2, index, mode, flag):

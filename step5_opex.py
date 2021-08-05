@@ -1,9 +1,9 @@
 import pandas as pd
 from janitor import clean_names
 def step5():
-    df = pd.read_csv('../UGPTI-Calculations/Output/step4_upt.csv', dtype ='str')
+    df = pd.read_csv('Output/step4_upt.csv', dtype ='str')
     df = clean_names(df)
-    df = df.head(5)
+    # df = df.head(5)
     df = df.set_index('ntd_id')
     df_opex = pd.read_csv('../UGPTI-Calculations/NTD_Files/2019 Operating Expenses.csv')
     df_opex = clean_names(df_opex)

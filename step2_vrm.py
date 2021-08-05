@@ -3,7 +3,7 @@ from janitor import clean_names
 def step2():
     df = pd.read_csv('../UGPTI-Calculations/Output/step1_mode.csv')
     df = clean_names(df)
-    df = df.head(5)
+    # df = df.head(5)
     df = df.set_index('ntd_id')
     df_service = pd.read_csv('../UGPTI-Calculations/NTD_Files/2019service.csv')
     df_service = clean_names(df_service)
