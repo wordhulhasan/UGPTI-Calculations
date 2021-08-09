@@ -79,7 +79,7 @@ def vehicle_calculation(df, df_rev_inventory, vehicletype):
         tdf = df_rev_inventory.query("ntd_id== @index and vehicle_type == @vehicletype")
         for openIndex, row in tdf.iterrows():
             if str(row['manufacture_year']).replace(',', '') == "nan":
-                row['manufacture_year'] = "0"
+                row['manufacture_year'] = "2019"
             serviceYear = 2019 - int(str(row['manufacture_year']).replace(',', ''))
             if str(row['active_fleet_vehicles']) == 'nan':
                 row['active_fleet_vehicles'] = '0'
