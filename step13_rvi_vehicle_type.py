@@ -5,7 +5,7 @@ from janitor import clean_names
 def step13():
     df = pd.read_csv('Output/step12_revenue_source_capital.csv', dtype='str')
     df = clean_names(df)
-    # df = df.head(5)
+    # df = df.head(10)
     df = df.set_index('ntd_id')
     df_rev_inventory = pd.read_csv('NTD_Files/2019 Revenue Vehicle Inventory.csv', dtype='str')
     df_rev_inventory = clean_names(df_rev_inventory)
