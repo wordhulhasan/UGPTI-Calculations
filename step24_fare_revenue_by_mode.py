@@ -5,7 +5,7 @@ def step24():
     df = clean_names(df)
     df = df.head(10)
     df = df.set_index('ntd_id')
-    df_fare = pd.read_csv('NTD_Files/2019 Fare Revenue.csv', encoding= 'unicode_escape', dtype ='str')
+    df_fare = pd.read_csv('NTD_Files/2019 Fare Revenue.csv', dtype ='str')
     df_fare = clean_names(df_fare)
     ar = "AR"
     cb = "CB"
@@ -60,14 +60,22 @@ def totalFareCalculation(df, df_fare, index, mode,flag):
     do = "DO"
     sum = 0
     tdf = df_fare.query("ntd_id== @index and mode== @mode")
+    print(tdf)
     if tdf.empty:
         df.loc[index, 'fare_'+mode.lower()] = 0
     else:
         if tdf.shape[0] > 1:
             tdf1 = tdf.query("tos == @pt")
             tdf2 = tdf.query("tos == @do")
-            val1 = int(tdf1['total_fares'].to_string(index=False).replace(',', '').replace('$', ''))
-            val2 = int(tdf2['total_fares'].to_string(index=False).replace(',', '').replace('$', ''))
+            if tdf1['total_fares'].empty:
+                val1 = 0
+            else:
+                val1 = int(tdf1['total_fares'].to_string(index=False).replace(',', '').replace('$', ''))
+            if tdf1['total_fares'].empty:
+                val2 = 0
+            else:
+                val2 = int(tdf2['total_fares'].to_string(index=False).replace(',', '').replace('$', ''))
+            # print(tdf1['total_fares'])
             df.loc[index, 'fare_'+mode.lower()] = val1 + val2
         else:
             df.loc[index, 'fare_'+mode.lower()] = tdf['total_fares'].to_string(index=False).replace('$', '')
