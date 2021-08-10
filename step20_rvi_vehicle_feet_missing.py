@@ -3,7 +3,7 @@ from janitor import clean_names
 
 
 def step20():
-    df = pd.read_csv('Output/step19_rvi_vehicle_feet_missing_year.csv', dtype='str')
+    df = pd.read_csv('Output/step19_rvi_vehicle_missing_year.csv', dtype='str')
     df = clean_names(df)
     # df = df.head(5)
     df = df.set_index('ntd_id')

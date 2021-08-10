@@ -38,7 +38,7 @@ def step19():
 
     totalCalculation(df)
     df = clean_names(df)
-    df.to_csv('Output/step19_rvi_vehicle_feet_missing_year.csv')
+    df.to_csv('Output/step19_rvi_vehicle_missing_year.csv')
 
 
 def totalCalculation(df):
