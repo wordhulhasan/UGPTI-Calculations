@@ -1,4 +1,4 @@
-NTD ID,Agency Name,Reporter Type,Reporting Module,Mode,TOS,Expense Type,Passenger Paid Fares,Organization Paid Fares,Total Fares
+﻿NTD ID,Agency Name,Reporter Type,Reporting Module,Mode,TOS,Expense Type,Passenger Paid Fares,Organization Paid Fares,Total Fares
 00001,King County Department of Metro Transit,Full Reporter,Urban,CB,PT,Funds Earned During Period,"$4,798,252","$11,001,346","$15,799,598"
 00001,King County Department of Metro Transit,Full Reporter,Urban,DR,PT,Funds Earned During Period,"$469,005","$480,069","$949,074"
 00001,King County Department of Metro Transit,Full Reporter,Urban,DT,PT,Funds Earned During Period,"$190,037",$0,"$190,037"
@@ -1701,7 +1701,7 @@ NTD ID,Agency Name,Reporter Type,Reporting Module,Mode,TOS,Expense Type,Passenge
 40103,Wiregrass Transit Authority,Reduced Reporter,Urban,DT,PT,Funds Expended on Operations,$0,$0,$0
 40104,Indian River County,Full Reporter,Urban,DR,PT,Funds Earned During Period,$0,$0,$0
 40104,Indian River County,Full Reporter,Urban,MB,PT,Funds Earned During Period,$0,$0,$0
-40105,Puerto Rico Highway and Transportation Authority - P�blico,Full Reporter,Urban,PB,PT,Funds Earned During Period,"$23,989,313",$0,"$23,989,313"
+40105,Puerto Rico Highway and Transportation Authority - Público,Full Reporter,Urban,PB,PT,Funds Earned During Period,"$23,989,313",$0,"$23,989,313"
 40108,Research Triangle Regional Public Transportation Authority,Full Reporter,Urban,DR,DO,Funds Earned During Period,"$72,408",$0,"$72,408"
 40108,Research Triangle Regional Public Transportation Authority,Full Reporter,Urban,MB,DO,Funds Earned During Period,"$1,681,482",$0,"$1,681,482"
 40108,Research Triangle Regional Public Transportation Authority,Full Reporter,Urban,MB,PT,Funds Earned During Period,"$77,288",$0,"$77,288"
